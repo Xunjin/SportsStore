@@ -12078,11 +12078,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\victo\\source\\ProAspNetCoreMVC2\\SportsStore\\SportsStore\\SportsStore.csproj",
+      "projectUniqueName": "C:\\Users\\victo\\source\\repos\\SportsStore\\SportsStore\\SportsStore.csproj",
       "projectName": "SportsStore",
-      "projectPath": "C:\\Users\\victo\\source\\ProAspNetCoreMVC2\\SportsStore\\SportsStore\\SportsStore.csproj",
+      "projectPath": "C:\\Users\\victo\\source\\repos\\SportsStore\\SportsStore\\SportsStore.csproj",
       "packagesPath": "C:\\Users\\victo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\victo\\source\\ProAspNetCoreMVC2\\SportsStore\\SportsStore\\obj\\",
+      "outputPath": "C:\\Users\\victo\\source\\repos\\SportsStore\\SportsStore\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
