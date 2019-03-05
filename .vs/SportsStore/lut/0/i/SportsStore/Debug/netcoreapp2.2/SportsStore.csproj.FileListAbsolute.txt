@@ -22,3 +22,4 @@ C:\Users\victo\source\repos\SportsStore\.vs\SportsStore\lut\0\i\SportsStore\Debu
 C:\Users\victo\source\repos\SportsStore\.vs\SportsStore\lut\0\i\SportsStore\Debug\netcoreapp2.2\SportsStore.Views.pdb
 C:\Users\victo\source\repos\SportsStore\.vs\SportsStore\lut\0\i\SportsStore\Debug\netcoreapp2.2\SportsStore.csproj.CopyComplete
 C:\Users\victo\source\repos\SportsStore\.vs\SportsStore\lut\0\i\SportsStore\Debug\netcoreapp2.2\SportsStore.dll
+C:\Users\victo\source\repos\SportsStore\.vs\SportsStore\lut\0\i\SportsStore\Debug\netcoreapp2.2\SportsStore.csprojAssemblyReference.cache
