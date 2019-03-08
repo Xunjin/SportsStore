@@ -40,7 +40,7 @@ namespace SportsStore.Models
                       },
                        new Product
                        {
-                           Name = "Corner Flahs",
+                           Name = "Corner Flags",
                            Description = "Give your playing field a                 professional touch",
                            Category = "Soccer",
                            Price = 34.95m

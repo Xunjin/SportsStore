@@ -1,7 +1,9 @@
-﻿using Moq;
+﻿using Microsoft.AspNetCore.Mvc;
+using Moq;
 using SportsStore.Controllers;
 using SportsStore.Models;
 using SportsStore.Models.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
@@ -10,6 +12,11 @@ namespace SportsStore.Tests
 {
     public class ProductControllerTests
     {
+        /// <summary>
+        /// Creates a <see cref="Mock.Mock"/> injecting into the ctor of <see cref="ProductController"/> and then calling the <see cref="ProductController.List(string, int)"/> method to request a specific page.
+        /// Therefore it compares the <see cref="Product"/> objects from the mock implementation.
+        /// 
+        /// </summary>
         [Fact]
         public void Can_Paginate()
         {
@@ -41,8 +48,10 @@ namespace SportsStore.Tests
 
         }
 
+        /// <summary>
+        /// Creates a <see cref="Mock.Mock"/> of <see cref="IProductRepository"/> containing <see cref="Product"/> objects then calls <see cref="ProductController.List(string ,int)"/> checking if it equals to <see cref="PagingInfo.PagingInfo"/>
+        /// </summary>
         [Fact]
-
         public void Can_Send_Pagination_View_Model()
         {
             // Arrange
@@ -72,7 +81,11 @@ namespace SportsStore.Tests
             Assert.Equal(5, pageInfo.TotalItems);
             Assert.Equal(2, pageInfo.TotalPages);
         }
-
+        /// <summary>
+        /// Creates a <see cref="Mock.Mock"/> of <see cref="IProductRepository"/> containing <see cref="Product"/> objects that belong to a range of categories.
+        /// 
+        /// One specific category is requested using the <see cref="ProductController.List(string, int)"/> action method and creates an array using <see cref="Enumerable.ToArray{TSource}(IEnumerable{TSource})"/> also the results are checked to ensure that the right objects are in the right order.
+        /// </summary>
         [Fact]
         public void Can_Filter_Products()
         {
@@ -104,6 +117,43 @@ namespace SportsStore.Tests
                 .Category == "Cat2");
             Assert.True(result[1].Name == "P4" && result[1]
                 .Category == "Cat2");
+        }
+
+        /// <summary>
+        /// Creates <see cref="Mock.Mock"/> of <see cref="IProductRepository"/> that contains known data in a range of categories and then call the <see cref="ProductController.List(string, int)"/> action method requesting each category in turn.
+        /// </summary>
+        [Fact]
+        public void Generate_Category_Specific_Product_Count()
+        {
+            // Arrange
+            Mock<IProductRepository> mock = new Mock<IProductRepository>();
+            mock.Setup(m => m.Products).Returns((new Product[]
+            {
+                new Product {ProductID = 1, Name = "P1", Category = "Cat1"},
+                new Product {ProductID = 2, Name = "P2", Category = "Cat2"},
+                new Product {ProductID = 3, Name = "P3", Category = "Cat1"},
+                new Product {ProductID = 4, Name = "P4", Category = "Cat2"},
+                new Product {ProductID = 5, Name = "P5", Category = "Cat3"}
+            }).AsQueryable<Product>());
+
+            ProductController target = new ProductController(mock.Object);
+            target.PageSize = 3;
+
+            Func<ViewResult, ProductsListViewModel> GetModel = result =>
+                result?.ViewData?.Model as ProductsListViewModel;
+
+            // Act
+            int? res1 = GetModel(target.List("Cat1"))?.PagingInfo.TotalItems;
+            int? res2 = GetModel(target.List("Cat2"))?.PagingInfo.TotalItems;
+            int? res3 = GetModel(target.List("Cat3"))?.PagingInfo.TotalItems;
+            int? resAll = GetModel(target.List(null))?.PagingInfo.TotalItems;
+
+
+            // Assert
+            Assert.Equal(2, res1);
+            Assert.Equal(2, res2);
+            Assert.Equal(1, res3);
+            Assert.Equal(5, resAll);
         }
     }
 }
