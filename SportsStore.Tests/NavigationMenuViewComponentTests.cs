@@ -4,16 +4,20 @@ using Microsoft.AspNetCore.Routing;
 using Moq;
 using SportsStore.Components;
 using SportsStore.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Xunit;
 
 namespace SportsStore.Tests
 {
+    /// <summary>
+    /// Tests for the Component <see cref="NavigationMenuViewComponent"/>
+    /// </summary>
     public class NavigationMenuViewComponentTests
     {
+        /// <summary>
+        /// Creates a <see cref="Mock.Mock"/> of <see cref="IProductRepository"/> that contains repeating categories and categories that are not in order. It Asserts that the duplicates are removed and that alphabetical ordering is imposed.
+        /// </summary>
         [Fact]
         public void Can_Select_Categories()
         {
@@ -37,6 +41,10 @@ namespace SportsStore.Tests
             // Assert
             Assert.True(Enumerable.SequenceEqual(new string[] { "Apples", "Oranges", "Plums" }, results));
         }
+
+        /// <summary>
+        /// Provides the view component with routing data through the <see cref="ViewComponentContext"/> property providing access to view-specific context data throught its <seealso cref="ViewComponentContext.ViewContext"/> that turns into a routing information using <see cref="RouteData"/>
+        /// </summary>
         [Fact]
         public void Indicates_Selected_Category()
         {

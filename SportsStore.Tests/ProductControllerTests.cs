@@ -10,6 +10,9 @@ using Xunit;
 
 namespace SportsStore.Tests
 {
+    /// <summary>
+    /// Tests for the Controller <see cref="ProductController"/>
+    /// </summary>
     public class ProductControllerTests
     {
         /// <summary>

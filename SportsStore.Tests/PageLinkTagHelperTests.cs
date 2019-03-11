@@ -4,16 +4,20 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 using Moq;
 using SportsStore.Infrastructure;
 using SportsStore.Models.ViewModels;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
 namespace SportsStore.Tests
 {
+/// <summary>
+/// Tests for the Infrastructure <see cref="PageLinkTagHelper"/>
+/// </summary>
     public class PageLinkTagHelperTests
     {
+        /// <summary>
+        /// This test consist in call the <see cref="PageLinkTagHelper.Process(TagHelperContext, TagHelperOutput)"/> with the test data and provide a <see cref="TagHelperOutput"/> object that inspect the HTML generated using literal string value that contains double quotes.
+        /// </summary>
         [Fact]
         public void Can_Generate_Page_Links()
         {
